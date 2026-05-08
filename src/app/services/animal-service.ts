@@ -11,7 +11,15 @@ export class AnimalService {
   constructor(private http: HttpClient) { }
 
   httpOptions = new HttpHeaders().set('Content-Type', 'application/json');
-  getAllAnimalsData(): Observable<any>{
+  getAllAnimalsData(): Observable<any> {
     return this.http.get<any[]>(this.apiUri)
   }
+
+  newAnimal(data: any): Observable<any> {
+    return this.http.post<any>(
+      this.apiUri,
+      data,
+      { headers: this.httpOptions });
+  }
+
 }
