@@ -13,14 +13,14 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: "./animal-component.html",
   styleUrl: "./animal-component.css",
-  
+
 })
 export class AnimalComponent {
   animalList: any = [];
   datos: any[] = [];
   animalForm: FormGroup | any;
   idAnimal: any;
-  editableAnimal:boolean= false;
+  editableAnimal: boolean = false;
 
   constructor(private animalService: AnimalService, private cd: ChangeDetectorRef, private formBuilder: FormBuilder, private router: Router, private toastr: ToastrService) { }
 
@@ -87,6 +87,16 @@ export class AnimalComponent {
     );
     this.editableAnimal = !this.editableAnimal;
   }
+  deleteAnimalEntry(id: any) {
+    console.log(id)
+    this.animalService.deleteAnimal(id).subscribe(
+      () => {
+        //Enviando mensaje de confirmación
+        this.newMessage("Animal eliminado");
+      }
+    );
+  }
+
 
 
 }

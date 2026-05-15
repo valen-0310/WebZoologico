@@ -36,5 +36,10 @@ export class AnimalService {
       { headers: this.httpOptions });
   }
 
+  deleteAnimal(id: any) {
+    return this.http.delete<any>(
+      this.apiUri + "/" + id,
+      { headers: this.httpOptions });
+  }
 
 }
